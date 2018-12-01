@@ -11,3 +11,5 @@ P3 Texture Mapping
 P4 Lighting 
 
 P5 Shader
+
+P6 Geometric Modeling
