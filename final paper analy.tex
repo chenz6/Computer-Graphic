@@ -1,0 +1,236 @@
+\documentclass[12pt,a4paper,titlepage]{article}
+\usepackage[a4paper]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{lipsum}
+
+\usepackage{amsmath, amssymb, amsfonts, amsthm, fouriernc}
+% mathtools for: Aboxed (put box on last equation in align envirenment)
+\usepackage{microtype} %improves the spacing between words and letters
+
+
+
+\usepackage{graphicx}
+\graphicspath{ {./pics/} {./eps/}}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% COLOR DEFINITIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[svgnames]{xcolor} % Enabling mixing colors and color's call by 'svgnames'
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{MyColor1}{rgb}{0.2,0.4,0.6} %mix personal color
+\newcommand{\textb}{\color{Black} \usefont{OT1}{lmss}{m}{n}}
+\newcommand{\blue}{\color{MyColor1} \usefont{OT1}{lmss}{m}{n}}
+\newcommand{\blueb}{\color{MyColor1} \usefont{OT1}{lmss}{b}{n}}
+\newcommand{\red}{\color{LightCoral} \usefont{OT1}{lmss}{m}{n}}
+\newcommand{\green}{\color{Turquoise} \usefont{OT1}{lmss}{m}{n}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FONTS AND COLORS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    SECTIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{titlesec}
+\usepackage{sectsty}
+%%%%%%%%%%%%%%%%%%%%%%%%
+%set section/subsections HEADINGS font and color
+\sectionfont{\color{MyColor1}}  % sets colour of sections
+\subsectionfont{\color{MyColor1}}  % sets colour of sections
+
+%set section enumerator to arabic number (see footnotes markings alternatives)
+\renewcommand\thesection{\arabic{section}.} %define sections numbering
+\renewcommand\thesubsection{\thesection\arabic{subsection}} %subsec.num.
+
+%define new section style
+\newcommand{\mysection}{
+\titleformat{\section} [runin] {\usefont{OT1}{lmss}{b}{n}\color{MyColor1}} 
+{\thesection} {3pt} {} } 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		CAPTIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{caption}
+\usepackage{subcaption}
+%%%%%%%%%%%%%%%%%%%%%%%%
+%\captionsetup[figure]{labelfont={color=Turquoise}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		!!!EQUATION (ARRAY) --> USING ALIGN INSTEAD
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%using amsmath package to redefine eq. numeration (1.1, 1.2, ...) 
+%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\theequation}{\thesection\arabic{equation}}
+
+%set box background to grey in align environment 
+\usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
+\makeatletter
+\patchcmd{\@Aboxed}{\boxed{#1#2}}{\colorbox{black!15}{$#1#2$}}{}{}%
+\patchcmd{\@boxed}{\boxed{#1#2}}{\colorbox{black!15}{$#1#2$}}{}{}%
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% DESIGN CIRCUITS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[siunitx, american, smartlabels, cute inductors, europeanvoltages]{circuitikz}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\makeatletter
+\let\reftagform@=\tagform@
+\def\tagform@#1{\maketag@@@{(\ignorespaces\textcolor{red}{#1}\unskip\@@italiccorr)}}
+\renewcommand{\eqref}[1]{\textup{\reftagform@{\ref{#1}}}}
+\makeatother
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PREPARE TITLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\blue CS 550 Final Project Analyzing \\
+\blueb Dynamic 3D Avatar Creation from Hand-held Video Input}
+\author{Zhuoling Chen}
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\linespread{1.5} 
+\begin{document}
+\maketitle
+
+\section{}{%
+\subsection{What is the general theme of the paper you read?}{
+
+This paper's theme is about building a dynamic 3D avatar based on hand-held video input. In this paper, the author talk about their deigning a new software pipeline which can help their system. Meanwhile, their system can recovered the user dynamic facial expression based on integrates feature tracking , optical flow and shape from shading.\newline
+In this paper, the author pointed out that some tiny action can be captured by normal map and the ambient occlusion map including wrinkle action. Moreover, the author stated that even used the simple system and limited help, the user can re-build user's face by themselves, which suggested their system is easy to use.}
+%%%subsection1 finished
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{What does the title mean?}{
+The title means this system can let the user create a 3D 
+avatar animation by used the cellphone video or other hand-held video input.
+}
+%%%% subsection2 finished
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{What are they trying to do? }{
+In this paper, they are trying to solve these problems:\newline
+•a. Using the medium-resolution blend shape plus the 
+high-resolution illumination and reflection map and dynamic detail maps to create the two-scale of dynamic 3D face rig.\newline
+•b. In order to show the illumination of inputting image, the author found a novel way, which is reconstructing the consistent albedo texture.\newline
+•c. They designed and build a new algorithm to create blend shape by combined feature-based registration, optical flow, and shape-from-shading.\newline
+•d. Using the offline reconstruction and online synthesis to fine-scale detail. Both of them are stored in pose-specific normal and ambient occlusion maps. \newline
+•e. They want to build a simple user interface, the user can handle it max 15 to min.\newline
+•f. They want to build a system which has the realistic. In the paper, the author stated that their system can reduction the animation of wrinkle.
+}
+%%% subsection3 finished %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Why are they trying to do it?}{
+In this paper, the author pointed out let, this system will help the bandwidth decreasing.Once the bandwidth decreasing, the system just need to send some animation parameters during
+live interaction. This will be benefited to group meeting which are multiple people interactions.\newline
+Moreover, it can let the content be flexibility. When people play some game or doing other thing, it can import people 3D avatar by change some geometry, illumination and viewpoint.
+}
+%%% subsection4 finished %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+}
+%%% END SECTION 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{}{
+\subsection{Who are the authors?}{
+Alexandru Eugen Ichim\newline
+Sofien Bouaziz\newline
+Mark Pauly\newline
+}
+%%% END SUBSECTION 1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{ Where are they from? }{
+They are from EPFL.\newline
+The Ecole polytechnique Fédérale de Lausanne (EPFL) is a research institute and university in Lausanne, Switzerland, that specializes in natural sciences and engineering. It is one of the two Swiss Federal Institutes of Technology, and it has three main missions: education, research and technology transfer at the highest international level.
+}
+%%% END SUBSECTION 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{What positions do they hold?}{
+Alexandru Eugen Ichim: he is at Oculus VR and his positions is computer vision software engineering.\newline
+Sofien Bouaziz: he is currently a principal research scientist (ICT 5) at Apple.\newline
+Mark Pauly: he is an associate professor at the School of Computer and Communication Sciences at EPFL. 
+}
+%%% END SUBSECTION 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Can you find out something about their backgrounds?}{
+Alexandru Eugen Ichim, he graduated with a PhD degree from the Computer Graphics and Geometry Laboratory (LGG) at Ecole Polytechnique Fédérale de Lausanne (EPFL) under the supervision of Prof. Mark Pauly. His research interests are human performance capture and reconstruction, and in general loving to work at the intersection of computer vision and graphics.\newline
+Sofien Bouaziz, he designed, developed, and productized the realtime face tracking algorithm powering the iPhone X Animojis and also available to third-party developers through ARKit. His research interests include machine learning/deep learning, computer vision, and computer graphics.\newline
+Before joining Apple, he completed my PhD degree in 2015 in the Computer Graphics and Geometry Laboratory (LGG) at the Swiss Federal Institute of Technology in Lausanne (EPFL). His thesis on realtime face tracking and animation was awarded the 2016 SIGGRAPH outstanding doctoral dissertation award honorable mention, the 2015 ETHZ Fritz Kutter PhD thesis award, and the 2015 EPFL Patrick Denantes PhD award honorable mention. In 2012, based on his research, he co-founded faceshift AG, an EPFL spin-off that brought high-quality markerless facial motion capture to the consumer market which was acquired in 2015 by Apple Inc. Over the years he acquired extensive research and engineering experience in numerous other companies such as Adobe Research, Mitsubishi Electric Research Laboratories (MERL), E-on Software, and Eugen Systems. \newline
+Mark Pauly is an associate professor at the School of Computer and Communication Sciences at EPFL. Prior to joining EPFL, he was assistant professor at the CS department of ETH Zurich since April 2005. From August 2003 to March 2005 he was a postdoctoral scholar at Stanford University, where he also held a position as visiting assistant professor during the summer of 2005. He received his Ph.D. degree (with distinction) in 2003 from ETH Zurich and his M.S. degree (with highest honors) in 1999 from TU Kaiserslautern. His research interests include computer graphics and animation, geometry processing, shape modeling and analysis, and computational geometry. He was recipient of a full-time scholarship of the German National Merit Foundation, received the ETH medal for outstanding dissertation, and was awarded the Eurographics Young Researcher Award in 2006.
+}
+%%% END SUBSECTION 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+}\label{sec:q2sec}
+%%% END SECTION 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{What did the authors do?}{
+They focused on three main parts:\newline
+•a.Static Modeling\newline
+ The static modeling will include Geometry Registration and Texture Reconstruction these tow parts.\newline
+In the \textbf{Geometry Registration }part, the team register the point cloud and using the 2D atomically to 3D. It will create the 3D face. Then the research team used the contours build the mouth,eye, eyebrow.For the special eye iris they used the texture to display them. More over, for the realistic, they add the tooth and tone for the user's face.\newline
+ For the \textbf{Texture Reconstruction} part. the author mentioned that:they will use the UV parameterization of the template to seamlessly combine all images using Poisson integration. Moreover, after integration. the texture is not only included about RGB reflecting but also the specific illumination of the recording. \newline
+•b.Dynamic Modeling\newline
+For this part they included two parts: Reconstructing the Blendshape Model and Reconstructing Detail Maps.\newline
+For the \textbf{Reconstructing the Blendshape Model}, they directly copies transfer the model to transfer the deformation gradients. Moreover, they deal with the extra face expression of the facial shape, which makes the facial expression is better look in video sequence.\newline
+For the \textbf{Reconstructing Detail Maps} part, the author stated that they create a set of detail maps in an offline optimization to enable real time detail synthesis and rendering at animation run time.\newline
+•c.Animation\newline
+In the\textbf{ animation} part, they evaluated the part of change of facial expression to observe the detail of the face. And they mentioned that  blendshape coefficients can be directly mapped to animation controllers for key frame animation or re-targeted from face tracking systems.
+}
+%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:q3sec}
+%%% END SECTION 3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{What conclusions did the paper draw?}{
+The author said that they introduced a totally different pipeline, which makes 3D face can be created by hand-held input. It is an important step of people creating their real time avatar-based interactions for the masses. Even through the inputting data is limited, it still minimize the required user assistance while maximizing reconstruction quality. 
+}
+%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:q4sec}
+%%% END SECTION 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{What insights did you get from the paper that you didn't already know?}{
+I did not the 3D facial reorganization need so many step. At the fist, i thought that it just need to using the static model of face. However, it need to consider about the lighting source shading and the dynamic animation. It should include the people face moving and build some eye and eyebrow for the picture is realistic.
+}
+%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:q5sec}
+%%% END SECTION 5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Did you see any flaws or short-sightedness in the paper's methods or conclusions? (It's OK if you didn't.)}{
+I think that they do not have enough the data to prove. Before this paper pubilshed, they should have the enough testing for the reliability of this system. Moreover, they should record the user using time to be a evidence for they claimed that thier system is ocnvience. And I think they should draw a total pipeline pictue. 
+
+}
+%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:q6sec}
+%%% END SECTION 6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{If you were these researchers, what would you do next in this line of research?}{
+If I was the researchers, I will increase the data input for next step in order to confirm this new pipeline‘s fault tolerance.
+}
+%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:q7sec}
+%%% END SECTION 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{References}{
+1.Alexandru Eugen Ichim,Sofien Bouaziz,Mark Pauly  "Dynamic 3D Avatar Creation from Hand-held Video Input" [Online]. Available: http://web.engr.oregonstate.edu/~mjb/cs550/Projects/Papers/C3DAvatar.pdf [Accessed: Nov 25, 2018]
+\newline
+}
+%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:q8sec}
+%%% END SECTION 7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
